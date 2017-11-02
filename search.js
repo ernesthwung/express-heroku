@@ -1,6 +1,6 @@
 //http://localhost:3000/api/search?address=中正紀念堂
 const rp = require("request-promise")
-const getInfo = require("./getInfo")
+const getInfo = require("./get-info")
 
 const KEY = 'AIzaSyBImOy7k7q3nRG0YOcN2Z4GfQDu3q7WYNE'
 
