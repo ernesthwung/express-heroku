@@ -6,7 +6,7 @@ const app = express()
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({
-  extended: false
+    extended: false
 }))
 
 // parse application/json
@@ -16,32 +16,32 @@ const port = process.env.PORT || 3000
 let queryHistory = []
 
 app.get('/', function (req, res) {
-  res.send('Hello World!')
+    res.send('{"name":"黃博禾","email":"ernesthwung@gmail.com"}')
 })
 
 app.get('/api/search', async function (req, res) {
-  const address = req.query.address
-  if (address) {
-    try {
-      let result = await search(address)
-      queryHistory.push(result)
-      res.json(result)
-    } catch (error) {
-      res.json({
-        error: error
-      })
+    const address = req.query.address
+    if (address) {
+        try {
+            let result = await search(address)
+            queryHistory.push(result)
+            res.json(result)
+        } catch (error) {
+            res.json({
+                error: error
+            })
+        }
+    } else {
+        res.json({
+            error: 'Address is empty.'
+        })
     }
-  } else {
-    res.json({
-      error: 'Address is empty.'
-    })
-  }
 })
 
 app.get('/api/history', function (req, res) {
-  res.json(queryHistory)
+    res.json(queryHistory)
 })
 
 app.listen(port, function () {
-  console.log(`Example app listening on port ${port}!`)
+    console.log(`Example app listening on port ${port}!`)
 })
